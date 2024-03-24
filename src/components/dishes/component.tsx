@@ -12,7 +12,7 @@ export const Dishes: FC<Props> = ({ dishes }) => (
   <ul>
     {dishes.map((menu) => (
       <li>
-        <Dish menu={menu} />
+        <Dish dish={menu} />
       </li>
     ))}
 </ul>
