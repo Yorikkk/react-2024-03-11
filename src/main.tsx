@@ -1,20 +1,10 @@
 import React from "react";
-import ReactDOM from 'react-dom/client'
+import ReactDOM from 'react-dom/client';
 
-import { restaurants } from './constants/mock'
-import { Restaurant } from "./components/restaurant/component";
-import { Layout } from "./components/layout/component";
+import { App } from "./App";
 
 const rootId = document.getElementById('root')!;
 
 const rootDom = ReactDOM.createRoot(rootId); 
 
-rootDom.render(
-  <Layout>
-    <div>
-      {restaurants.map((restaurant) => (
-        <Restaurant restaurant={restaurant} />
-      ))}
-    </div>
-  </Layout>
-);
+rootDom.render(<App />);
