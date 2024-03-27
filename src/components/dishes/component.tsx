@@ -10,9 +10,9 @@ export type Props = {
 
 export const Dishes: FC<Props> = ({ dishes }) => (
   <ul>
-    {dishes.map((menu) => (
+    {dishes.map((dish) => (
       <li>
-        <Dish dish={menu} key={menu.id} />
+        <Dish dish={dish} key={dish.id} />
       </li>
     ))}
 </ul>
