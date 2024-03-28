@@ -1,9 +1,9 @@
-import { IDish } from "./dish";
-import { IReview } from "./review";
+import { Dish } from "./dish";
+import { Review } from "./review";
 
-export type IRestaurant = {
+export type Restaurant = {
   id: string,
   name: string,
-  menu: IDish[],
-  reviews: IReview[],
+  menu: Dish[],
+  reviews: Review[],
 }

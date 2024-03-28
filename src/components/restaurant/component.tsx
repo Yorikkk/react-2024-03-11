@@ -1,6 +1,6 @@
 import React, { type FC } from "react";
 
-import { type IRestaurant } from "../../types/restaurant";
+import { type Restaurant as IRestaurant } from "../../types/restaurant";
 
 import { Dishes } from "../dishes/component";
 import { Reviews } from "../reviews/component";

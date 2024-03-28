@@ -1,6 +1,6 @@
 import React, { type FC } from "react";
 
-import { type IDish } from "../../types/dish";
+import { type Dish as IDish } from "../../types/dish";
 
 import { Dish } from "../dish/component";
 
@@ -10,9 +10,9 @@ export type Props = {
 
 export const Dishes: FC<Props> = ({ dishes }) => (
   <ul>
-    {dishes.map((menu) => (
+    {dishes.map((dish) => (
       <li>
-        <Dish dish={menu} />
+        <Dish dish={dish} key={dish.id} />
       </li>
     ))}
 </ul>
