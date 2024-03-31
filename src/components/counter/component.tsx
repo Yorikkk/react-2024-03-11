@@ -1,6 +1,6 @@
 import { FC } from "react"
 
-import { MAX_COUNTER_COUNT, MIN_COUNTER_COUNT } from "../../constants/constants"
+import { MAX_COUNTER_VALUE, MIN_COUNTER_VALUE } from "../../constants/constants"
 
 type Props = {
   value: number,
@@ -12,8 +12,8 @@ type Props = {
 export const Counter: FC<Props> = ({ 
   value, 
   onChange, 
-  min = MIN_COUNTER_COUNT, 
-  max = MAX_COUNTER_COUNT 
+  min = MIN_COUNTER_VALUE, 
+  max = MAX_COUNTER_VALUE 
 }) => {
   return (
     <div>

@@ -1,20 +1,34 @@
-import { useState, type FC } from "react";
+import { type FC } from "react";
 
 import { type Dish as IDish } from "../../types/dish"
-import { Counter } from "../counter/component";
+
+import { useCounter } from "../../hooks/counter";
+import { MAX_COUNTER_VALUE, MIN_COUNTER_VALUE } from "../../constants/constants";
 
 type Props = {
   dish: IDish
 }
 
 export const Dish: FC<Props> = ({ dish }) => {
-  const [dishAmount, setDishAmount] = useState(0);
+  const { amount, increment, decrement } = useCounter();
 
   return (
     <div>
       <span>{dish.name}</span>
 
-      <Counter value={dishAmount} onChange={setDishAmount} />
+      <div>
+        <button 
+          onClick={decrement} 
+          disabled={amount === MIN_COUNTER_VALUE}
+        >-</button>
+
+        {amount}
+        
+        <button 
+          onClick={increment} 
+          disabled={amount === MAX_COUNTER_VALUE}
+        >+</button>
+      </div>
     </div>
   )
 }
