@@ -1,4 +1,5 @@
 import { FC } from "react"
+
 import { Restaurant } from "../../types/restaurant"
 import { Tab } from "../tab/component"
 
