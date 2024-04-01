@@ -1,6 +1,6 @@
-import React from "react";
+import { FC, PropsWithChildren } from "react";
 
-export const Layout = ({ children }) => (
+export const Layout: FC<PropsWithChildren> = ({ children }) => (
   <div>
     <header>Рестораны</header>
 

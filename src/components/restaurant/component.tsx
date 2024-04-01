@@ -1,4 +1,4 @@
-import React, { type FC } from "react";
+import { type FC } from "react";
 
 import { type Restaurant as IRestaurant } from "../../types/restaurant";
 

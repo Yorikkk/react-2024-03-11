@@ -1,48 +1,34 @@
-import React, { useState, type FC } from "react";
+import { type FC } from "react";
 
 import { type Dish as IDish } from "../../types/dish"
+
+import { useCounter } from "../../hooks/counter";
+import { MAX_COUNTER_VALUE, MIN_COUNTER_VALUE } from "../../constants/constants";
 
 type Props = {
   dish: IDish
 }
 
-const MIN_DISH_COUNT = 0;
-const MAX_DISH_COUNT = 5;
-
 export const Dish: FC<Props> = ({ dish }) => {
-  const [dishCount, setDishCount] = useState(0);
-
-  const reduceStateDishCount = () => {
-    if (! isMinDishCount()) {
-      setDishCount(dishCount - 1)
-    }
-  }
-
-  const increaseStateDishCount = () => {
-    if (! isMaxDishCount()) {
-      setDishCount(dishCount + 1)
-    }
-  }
-
-  const isMinDishCount = () => dishCount === MIN_DISH_COUNT
-
-  const isMaxDishCount = () => dishCount === MAX_DISH_COUNT
+  const { amount, increment, decrement } = useCounter();
 
   return (
     <div>
       <span>{dish.name}</span>
 
-      <button 
-        onClick={reduceStateDishCount} 
-        disabled={isMinDishCount()}
-      >-</button>
+      <div>
+        <button 
+          onClick={decrement} 
+          disabled={amount === MIN_COUNTER_VALUE}
+        >-</button>
 
-      {dishCount}
-
-      <button 
-        onClick={increaseStateDishCount} 
-        disabled={isMaxDishCount()}
-      >+</button>
+        {amount}
+        
+        <button 
+          onClick={increment} 
+          disabled={amount === MAX_COUNTER_VALUE}
+        >+</button>
+      </div>
     </div>
   )
 }

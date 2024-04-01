@@ -1,4 +1,4 @@
-import React, { type FC } from "react";
+import { type FC } from "react";
 
 import { type Review as IReview } from "../../types/review"
 
