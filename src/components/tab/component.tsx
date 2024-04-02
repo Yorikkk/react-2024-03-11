@@ -1,4 +1,5 @@
 import { FC } from "react"
+import { Button } from "../button/component"
 
 type Props = {
   title: string,
@@ -8,6 +9,6 @@ type Props = {
 
 export const Tab: FC<Props> = ({ title, isActive, onClick }) => {
   return (
-    <button onClick={onClick} disabled={isActive}>{title}</button>
+    <Button onClick={onClick} disabled={isActive} viewVariant="secondary" size="l">{title}</Button>
   )
 }

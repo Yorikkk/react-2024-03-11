@@ -1,0 +1,14 @@
+.root {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  background-color: rgb(243, 243, 243);
+}
+
+.main {
+  width: 1100px;
+  max-width: 1100px;
+  display: grid;
+  grid-template-rows: 80px auto 50px;
+  background-color: white;
+}

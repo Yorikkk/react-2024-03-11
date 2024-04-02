@@ -1,0 +1,49 @@
+.root {
+  display: grid;
+  grid-template-columns: 120px 1fr;
+  background-color: rgb(240, 239, 239);
+}
+
+.preview {
+  max-height: 120px;
+
+  img {
+    width: 120px;
+    height: 120px;
+  }
+}
+
+.description {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 6px 24px;
+}
+
+.title {
+  font-size: 20px;
+}
+
+.price {
+  font-size: 18px;
+
+  span {
+    font-weight: 600;
+  }
+}
+
+.order {
+  display: flex;
+  gap: 6px;
+  font-size: 18px;
+}
+
+.amount {
+  &:first-child {
+    margin-right: 6px;
+  }
+
+  &:last-child {
+    margin-left: 6px;
+  }
+}

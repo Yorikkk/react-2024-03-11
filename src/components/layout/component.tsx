@@ -1,11 +1,17 @@
 import { FC, PropsWithChildren } from "react";
+import { Header } from "../header/header";
+
+import style from "./styles.module.scss"
+import { Footer } from "../footer/component";
 
 export const Layout: FC<PropsWithChildren> = ({ children }) => (
-  <div>
-    <header>Рестораны</header>
+  <div className={style.root}>
+    <div className={style.main}>
+      <Header />
 
-    {children}
+      {children}
 
-    <footer>2024</footer>
+      <Footer />
+    </div>
   </div>
 )

@@ -1,0 +1,50 @@
+.root {
+  margin: 0;
+  padding: 0 2px;
+  border: 0;
+  border-radius: 4px;
+}
+
+.secondary {
+  background-color: rgb(238, 237, 237);
+
+  &:hover:not(.disabled) {
+    background-color: rgb(192, 192, 192);
+  }
+}
+
+.primary {
+  background-color: rgb(175, 211, 223);
+
+  &:hover:not(.disabled) {
+    background-color: rgb(124, 202, 228);
+  }
+}
+
+.disabled {
+  opacity: 0.5;
+}
+
+.s {
+  font-size: 12px;
+  min-width: 18px;
+  min-height: 18px;
+}
+
+.m {
+  font-size: 14px;
+  min-width: 20px;
+  min-height: 20px;
+}
+
+.l {
+  font-size: 18px;
+  min-width: 24px;
+  min-height: 24px;
+}
+
+.xl {
+  font-size: 24px;
+  min-width: 36px;
+  min-height: 36px;
+}

@@ -15,8 +15,9 @@ export const App = () => {
 
   return (
     <Layout>
-      <div>
+      <main className="main">
         <RestaurantTabs
+          className="navigation"
           restaurants={restaurants}
           currentIndex={activeRestaurantIndex}
           onTabClick={(index: number) => {
@@ -25,8 +26,8 @@ export const App = () => {
           }}
         />
 
-        {activeRestaurant && <Restaurant restaurant={activeRestaurant} /> }
-      </div>
+        {activeRestaurant && <Restaurant restaurant={activeRestaurant} className="restaurant" /> }
+      </main>
     </Layout>
   )
 }
