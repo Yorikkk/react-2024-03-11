@@ -11,7 +11,7 @@ type Props = {
 export const Reviews: FC<Props> = ({ reviews }) => (
   <ul>
     {reviews.map((review) => (
-      <li>
+      <li key={review.id}>
         <Review review={review} />
       </li>
     ))}

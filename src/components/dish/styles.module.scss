@@ -1,7 +1,14 @@
 .root {
   display: grid;
   grid-template-columns: 120px 1fr;
-  background-color: rgb(240, 239, 239);
+
+  &.light {
+    background-color: rgb(240, 239, 239);
+  }
+
+  &.dark {
+    background-color: rgb(85, 85, 85);
+  }
 }
 
 .preview {

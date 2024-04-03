@@ -13,8 +13,8 @@ export type Props = {
 export const Dishes: FC<Props> = ({ dishes }) => (
   <ul className={styles.root}>
     {dishes.map((dish) => (
-      <li>
-        <Dish dish={dish} key={dish.id} />
+      <li key={dish.id}>
+        <Dish dish={dish} />
       </li>
     ))}
 </ul>

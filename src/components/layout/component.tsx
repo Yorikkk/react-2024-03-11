@@ -1,17 +1,31 @@
-import { FC, PropsWithChildren } from "react";
+import { FC, PropsWithChildren, useContext } from "react";
 import { Header } from "../header/header";
 
 import style from "./styles.module.scss"
 import { Footer } from "../footer/component";
+import classNames from "classnames";
+import { ThemeContext } from "../../context/theme";
 
-export const Layout: FC<PropsWithChildren> = ({ children }) => (
-  <div className={style.root}>
-    <div className={style.main}>
-      <Header />
+type Props = PropsWithChildren & {
+  changeUser: () => void,
+  changeTheme: () => void,
+}
 
-      {children}
+export const Layout: FC<Props> = ({ children, changeTheme, changeUser }) => {
+  const theme = useContext(ThemeContext);
 
-      <Footer />
+  return (
+    <div className={classNames(style.root, style[theme])}>
+      <div className={style.main}>
+        <Header 
+          changeTheme={changeTheme} 
+          changeUser={changeUser}
+        />
+  
+        {children}
+  
+        <Footer />
+      </div>
     </div>
-  </div>
-)
+  );
+};

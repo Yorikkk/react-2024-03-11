@@ -18,6 +18,7 @@ export const RestaurantTabs: FC<Props> = ({ restaurants, currentIndex, onTabClic
     <div className={classNames(styles.root, className)}>
       {restaurants.map((restaurant, index) => (
         <Tab 
+          key={restaurant.id}
           title={restaurant.name}
           isActive={index === currentIndex}
           onClick={() => onTabClick(index)}

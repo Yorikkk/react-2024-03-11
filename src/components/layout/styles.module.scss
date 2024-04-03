@@ -2,13 +2,29 @@
   min-height: 100vh;
   display: flex;
   justify-content: center;
-  background-color: rgb(243, 243, 243);
+
+  &.light {
+    background-color: rgb(243, 243, 243);
+  }
+
+  &.dark {
+    background-color: rgb(14, 14, 14);
+  }
 }
 
 .main {
   width: 1100px;
   max-width: 1100px;
   display: grid;
-  grid-template-rows: 80px auto 50px;
-  background-color: white;
+  grid-template-rows: 100px auto 50px;
+
+  .light & {
+    background-color: white;
+    color: black;
+  }
+
+  .dark & {
+    background-color: rgb(36, 36, 36);
+    color: white;
+  }
 }

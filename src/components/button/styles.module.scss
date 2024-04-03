@@ -1,23 +1,51 @@
 .root {
   margin: 0;
-  padding: 0 2px;
+  padding: 2px;
   border: 0;
   border-radius: 4px;
 }
 
-.secondary {
-  background-color: rgb(238, 237, 237);
+.light {
+  color: black;
+}
 
-  &:hover:not(.disabled) {
-    background-color: rgb(192, 192, 192);
+.dark {
+  color: white;
+}
+
+.secondary {
+  &.light {
+    background-color: rgb(238, 237, 237);
+
+    &:hover:not(.disabled) {
+      background-color: rgb(192, 192, 192);
+    }
+  }
+
+  &.dark {
+    background-color: rgb(75, 75, 75);
+
+    &:hover:not(.disabled) {
+      background-color: rgb(138, 138, 138);
+    }
   }
 }
 
 .primary {
-  background-color: rgb(175, 211, 223);
+  &.light {
+    background-color: rgb(175, 211, 223);
 
-  &:hover:not(.disabled) {
-    background-color: rgb(124, 202, 228);
+    &:hover:not(.disabled) {
+      background-color: rgb(124, 202, 228);
+    }
+  }
+
+  &.dark {
+    background-color: rgb(38, 64, 73);
+
+    &:hover:not(.disabled) {
+      background-color: rgb(80, 132, 150);
+    }
   }
 }
 
@@ -35,12 +63,14 @@
   font-size: 14px;
   min-width: 20px;
   min-height: 20px;
+  padding: 4px;
 }
 
 .l {
   font-size: 18px;
   min-width: 24px;
   min-height: 24px;
+  padding: 6px;
 }
 
 .xl {
