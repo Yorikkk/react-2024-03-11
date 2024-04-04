@@ -16,9 +16,9 @@ type Props = {
 }
 
 export const Dish: FC<Props> = ({ dish, className }) => {
-  const user = useContext(UserContext);
+  const { user } = useContext(UserContext);
 
-  const theme = useContext(ThemeContext);
+  const { theme } = useContext(ThemeContext);
 
   const { amount, increment, decrement } = useCounter();
 

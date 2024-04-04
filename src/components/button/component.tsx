@@ -1,7 +1,7 @@
 import { FC, PropsWithChildren, useContext } from "react";
 import classNames from "classnames";
 
-import { Sizes, ViewVariants } from "../../types/styles";
+import { Sizes, ViewVariants } from "../../types/types";
 import styles from "./styles.module.scss";
 import { ThemeContext } from "../../context/theme";
 
@@ -21,7 +21,7 @@ export const Button: FC<Props> = ({
   viewVariant = 'primary',
   onClick, 
 }) => {
-  const theme = useContext(ThemeContext);
+  const { theme } = useContext(ThemeContext);
 
   return (
     <button

@@ -15,7 +15,7 @@ type Props = {
 }
 
 export const Restaurant: FC<Props> = ({ restaurant, className }) => {
-  const theme = useContext(ThemeContext);
+  const { theme} = useContext(ThemeContext);
 
   if (! restaurant) {
     return null;
