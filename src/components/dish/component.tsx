@@ -9,18 +9,26 @@ import styles from './styles.module.scss'
 import classNames from "classnames";
 import { ThemeContext } from "../../context/theme";
 import { UserContext } from "../../context/user";
+import { useSelector } from "react-redux";
+import { State } from "../../types/state";
 
 type Props = {
-  dish: IDish,
+  dishId: string,
   className?: string
 }
 
-export const Dish: FC<Props> = ({ dish, className }) => {
+export const Dish: FC<Props> = ({ dishId, className }) => {
   const { user } = useContext(UserContext);
-
   const { theme } = useContext(ThemeContext);
-
   const { amount, increment, decrement } = useCounter();
+
+  const dish = useSelector<State, IDish>((state) => state.dish.entities?.[dishId])
+
+  if (! dish) {
+    return null
+  }
+
+  const { name, price } = dish
 
   return (
     <div
@@ -31,9 +39,9 @@ export const Dish: FC<Props> = ({ dish, className }) => {
       </div>
 
       <div className={styles.description}>
-        <h4 className={styles.title}>{dish.name}</h4>
+        <h4 className={styles.title}>{name}</h4>
 
-        <div className={styles.price}>Price: <span>{dish.price} $</span></div>
+        <div className={styles.price}>Price: <span>{price} $</span></div>
 
         {user && (
           <div className={styles.order}>

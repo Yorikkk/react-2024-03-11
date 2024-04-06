@@ -4,3 +4,8 @@ export type Dish = {
   price: number,
   ingredients: string[],
 }
+
+export type DishState = {
+  ids: string[],
+  entities: Record<string, Dish>
+}

@@ -1,27 +1,29 @@
 import { FC } from "react";
 
-import { Restaurant } from "../../types/restaurant";
-import { Tab } from "../tab/component";
+import { RestaurantTab } from "../restaurant-tab/component";
 import classNames from "classnames";
 
 import styles from "./styles.module.scss";
+import { useSelector } from "react-redux";
+import { State } from "../../types/state";
 
 type Props = {
   className?: string,
-  currentIndex: number,
-  restaurants: Restaurant[],
-  onTabClick: (index: number) => void,
+  activeRestaurantId: string | null,
+  onTabClick: (restaurantId: string) => void,
 }
 
-export const RestaurantTabs: FC<Props> = ({ restaurants, currentIndex, onTabClick, className }) => {
+export const RestaurantTabs: FC<Props> = ({ activeRestaurantId, onTabClick, className }) => {
+  const restaurantIds = useSelector<State, string[]>((state) => state.restaurant.ids);
+
   return (
     <div className={classNames(styles.root, className)}>
-      {restaurants.map((restaurant, index) => (
-        <Tab 
-          key={restaurant.id}
-          title={restaurant.name}
-          isActive={index === currentIndex}
-          onClick={() => onTabClick(index)}
+      {restaurantIds.map((restaurantId) => (
+        <RestaurantTab 
+          key={restaurantId}
+          restaurantId={restaurantId}
+          isActive={activeRestaurantId === restaurantId}
+          onClick={() => onTabClick(restaurantId)}
         />
       ))}
     </div>
