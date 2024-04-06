@@ -11,7 +11,7 @@ export const Layout: FC<PropsWithChildren> = ({ children }) => {
 
   return (
     <div className={classNames(style.root, style[theme])}>
-      <div className={style.main}>
+      <div className={style.wrapper}>
         <Header />
   
         {children}

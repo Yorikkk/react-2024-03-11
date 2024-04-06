@@ -1,59 +1,31 @@
-import { useState } from "react";
-
-import { restaurants } from "./constants/mock";
+import { useMemo } from "react";
 
 import { Layout } from "./components/layout/component";
-import { Restaurant } from "./components/restaurant/component";
-import { RestaurantTabs } from "./components/restaurant-tabs/component";
-import { getStorageValue, setStorageValue } from "./utils/storage";
-import { ACTIVE_RESTAURANT_INDEX_STORAGE_KEY, ACTIVE_THEME_STORAGE_KEY, DEFAULT_THEME } from "./constants/constants";
 import { ThemeContext } from "./context/theme";
-import { User } from "./types/user";
 import { UserContext } from "./context/user";
-import { isValidTheme } from "./guards/themes";
+import { Restaurants } from "./components/restaurants/component";
+import { useTheme } from "./hooks/theme";
+import { useUser } from "./hooks/user";
 
 export const App = () => {
-  const [user, setUser] = useState<User | null>(null)
+  const { user, login, logout } = useUser();
+  const { theme, toggleTheme } = useTheme();
 
-  const [theme, setTheme] = useState(() => {
-    const theme = getStorageValue(ACTIVE_THEME_STORAGE_KEY)
+  const userContext = useMemo(
+    () => ({ user, login, logout }),
+    [user, login, logout]
+  );
 
-    return isValidTheme(theme) ? theme : DEFAULT_THEME
-  })
-
-  const [activeRestaurantIndex, setActiveRestaurantIndex] = useState(() => Number(getStorageValue(ACTIVE_RESTAURANT_INDEX_STORAGE_KEY)) ?? 0);
-
-  const activeRestaurant = restaurants[activeRestaurantIndex];
+  const themeContext = useMemo(
+    () => ({ theme, toggleTheme }),
+    [theme, toggleTheme]
+  );
 
   return (
-    <UserContext.Provider value={{
-      user,
-      onChange: () => {
-        setUser(user ? null : { name: 'Yury' })
-      }
-    }}>
-      <ThemeContext.Provider value={{
-        theme,
-        onChange: () => {
-          const newTheme = theme === 'light' ? 'dark' : 'light'
-          setStorageValue(ACTIVE_THEME_STORAGE_KEY, newTheme)
-          setTheme(newTheme)
-        }
-      }}>
+    <UserContext.Provider value={userContext}>
+      <ThemeContext.Provider value={themeContext}>
         <Layout>
-          <main className="main">
-            <RestaurantTabs
-              className="navigation"
-              restaurants={restaurants}
-              currentIndex={activeRestaurantIndex}
-              onTabClick={(index: number) => {
-                setStorageValue(ACTIVE_RESTAURANT_INDEX_STORAGE_KEY, String(index))
-                setActiveRestaurantIndex(index)
-              }}
-            />
-
-            {activeRestaurant && <Restaurant restaurant={activeRestaurant} className="restaurant" /> }
-          </main>
+          <Restaurants />
         </Layout>
       </ThemeContext.Provider>
     </UserContext.Provider>

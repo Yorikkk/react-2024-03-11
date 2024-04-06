@@ -5,28 +5,22 @@ import { ThemeContext } from "../../context/theme";
 import { UserContext } from "../../context/user";
 
 export const Header = () => {
-  const themeContext = useContext(ThemeContext);
-  const userContext = useContext(UserContext);
-
-  const { theme } = themeContext
-  const { user } = userContext
+  const { theme, toggleTheme } = useContext(ThemeContext);
+  const { user, login, logout } = useContext(UserContext);
 
   return (
     <header className={styles.root}>
       <h1 className={styles.title}>Restaurants</h1>
 
       <div className={styles.actions}>
-        {user && <Button viewVariant="secondary" size="l">{user.name}</Button>}
+        {user && <span>{user.name}</span>}
 
-        <Button viewVariant="secondary" size="l" onClick={userContext.onChange}>
+        <Button viewVariant="secondary" size="l" onClick={() => user ? logout() : login()}>
           { user ? 'Sign out' : 'Sign in' }
         </Button>
 
-        <ThemeContext.Provider value={{
-           ...themeContext, 
-           theme: 'light' 
-        }}>
-          <Button viewVariant="secondary" size="l" onClick={themeContext.onChange}>
+        <ThemeContext.Provider value={{ theme: 'light' }}>
+          <Button viewVariant="secondary" size="l" onClick={toggleTheme}>
             { theme === 'light' ? <>&#9790;</> : <>&#9728;</> }
           </Button>
         </ThemeContext.Provider>

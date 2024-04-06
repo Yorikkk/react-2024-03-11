@@ -1,13 +1,13 @@
-import React from "react";
-import { DEFAULT_THEME } from "../constants/constants";
+import { createContext } from "react";
 import { Themes } from "../types/types";
+import { DEFAULT_THEME } from "../constants/constants";
 
 type Context = {
   theme: Themes,
-  onChange: () => void
+  toggleTheme?: () => void
 }
 
-export const ThemeContext = React.createContext<Context>({
+export const ThemeContext = createContext<Context>({
   theme: DEFAULT_THEME,
-  onChange: () => {}
+  toggleTheme: () => {}
 });
