@@ -1,0 +1,12 @@
+.root {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding: 12px;
+  border-right: 1px solid lightgrey;
+
+  @media (max-width: 700px) {
+    border-right: none;
+    border-bottom: 1px solid lightgrey;
+  }
+}

@@ -1,11 +1,23 @@
-import { FC, PropsWithChildren } from "react";
+import { FC, PropsWithChildren, useContext } from "react";
+import { Header } from "../header/header";
 
-export const Layout: FC<PropsWithChildren> = ({ children }) => (
-  <div>
-    <header>Рестораны</header>
+import style from "./styles.module.scss"
+import { Footer } from "../footer/component";
+import classNames from "classnames";
+import { ThemeContext } from "../../context/theme";
 
-    {children}
+export const Layout: FC<PropsWithChildren> = ({ children }) => {
+  const { theme } = useContext(ThemeContext);
 
-    <footer>2024</footer>
-  </div>
-)
+  return (
+    <div className={classNames(style.root, style[theme])}>
+      <div className={style.wrapper}>
+        <Header />
+  
+        {children}
+  
+        <Footer />
+      </div>
+    </div>
+  );
+};

@@ -1,32 +1,33 @@
-import { useState } from "react";
-
-import { restaurants } from "./constants/mock";
+import { useMemo } from "react";
 
 import { Layout } from "./components/layout/component";
-import { Restaurant } from "./components/restaurant/component";
-import { RestaurantTabs } from "./components/restaurant-tabs/component";
-import { getStorageValue, setStorageValue } from "./utils/storage";
-import { ACTIVE_RESTAURANT_INDEX_STORAGE_KEY } from "./constants/constants";
+import { ThemeContext } from "./context/theme";
+import { UserContext } from "./context/user";
+import { Restaurants } from "./components/restaurants/component";
+import { useTheme } from "./hooks/theme";
+import { useUser } from "./hooks/user";
 
 export const App = () => {
-  const [activeRestaurantIndex, setActiveRestaurantIndex] = useState(() => Number(getStorageValue(ACTIVE_RESTAURANT_INDEX_STORAGE_KEY)) ?? 0);
+  const { user, login, logout } = useUser();
+  const { theme, toggleTheme } = useTheme();
 
-  const activeRestaurant = restaurants[activeRestaurantIndex];
+  const userContext = useMemo(
+    () => ({ user, login, logout }),
+    [user, login, logout]
+  );
+
+  const themeContext = useMemo(
+    () => ({ theme, toggleTheme }),
+    [theme, toggleTheme]
+  );
 
   return (
-    <Layout>
-      <div>
-        <RestaurantTabs
-          restaurants={restaurants}
-          currentIndex={activeRestaurantIndex}
-          onTabClick={(index: number) => {
-            setStorageValue(ACTIVE_RESTAURANT_INDEX_STORAGE_KEY, String(index))
-            setActiveRestaurantIndex(index)
-          }}
-        />
-
-        {activeRestaurant && <Restaurant restaurant={activeRestaurant} /> }
-      </div>
-    </Layout>
+    <UserContext.Provider value={userContext}>
+      <ThemeContext.Provider value={themeContext}>
+        <Layout>
+          <Restaurants />
+        </Layout>
+      </ThemeContext.Provider>
+    </UserContext.Provider>
   )
 }

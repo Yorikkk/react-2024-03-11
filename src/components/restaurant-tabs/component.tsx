@@ -1,19 +1,24 @@
-import { FC } from "react"
+import { FC } from "react";
 
-import { Restaurant } from "../../types/restaurant"
-import { Tab } from "../tab/component"
+import { Restaurant } from "../../types/restaurant";
+import { Tab } from "../tab/component";
+import classNames from "classnames";
+
+import styles from "./styles.module.scss";
 
 type Props = {
-  restaurants: Restaurant[],
+  className?: string,
   currentIndex: number,
-  onTabClick: (index: number) => void
+  restaurants: Restaurant[],
+  onTabClick: (index: number) => void,
 }
 
-export const RestaurantTabs: FC<Props> = ({ restaurants, currentIndex, onTabClick }) => {
+export const RestaurantTabs: FC<Props> = ({ restaurants, currentIndex, onTabClick, className }) => {
   return (
-    <div>
+    <div className={classNames(styles.root, className)}>
       {restaurants.map((restaurant, index) => (
         <Tab 
+          key={restaurant.id}
           title={restaurant.name}
           isActive={index === currentIndex}
           onClick={() => onTabClick(index)}
