@@ -1,18 +1,16 @@
 import { type FC } from "react";
 
-import { type Review as IReview } from "../../types/review";
-
 import { Review } from "../review/component";
 
 type Props = {
-  reviews: IReview[]
+  reviewIds: string[]
 }
 
-export const Reviews: FC<Props> = ({ reviews }) => (
+export const Reviews: FC<Props> = ({ reviewIds }) => (
   <ul>
-    {reviews.map((review) => (
-      <li key={review.id}>
-        <Review review={review} />
+    {reviewIds.map((reviewId) => (
+      <li key={reviewId}>
+        <Review reviewId={reviewId} />
       </li>
     ))}
 </ul>

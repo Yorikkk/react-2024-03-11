@@ -1,32 +1,32 @@
 import { useState } from "react"
 import classNames from "classnames"
 
-import { ACTIVE_RESTAURANT_INDEX_STORAGE_KEY } from "../../constants/constants"
+import { ACTIVE_RESTAURANT_ID_STORAGE_KEY } from "../../constants/constants"
 import { getStorageValue, setStorageValue } from "../../utils/storage"
 import { RestaurantTabs } from "../restaurant-tabs/component"
 import { Restaurant } from "../restaurant/component"
-import { restaurants } from "../../constants/mock"
 
 import style from './stles.module.scss'
+import { useSelector } from "react-redux"
+import { State } from "../../types/state"
 
 export const Restaurants = () => {
-  const [activeRestaurantIndex, setActiveRestaurantIndex] = useState(() => Number(getStorageValue(ACTIVE_RESTAURANT_INDEX_STORAGE_KEY)) ?? 0);
+  const restaurantId = useSelector<State, string | null>((state) => state.restaurant.ids?.[0] ?? null)
 
-  const activeRestaurant = restaurants[activeRestaurantIndex];
+  const [activeRestaurantId, setActiveRestaurantId] = useState(() => getStorageValue(ACTIVE_RESTAURANT_ID_STORAGE_KEY) ?? restaurantId);
 
   return (
     <div className={classNames(style.root)}>
       <RestaurantTabs
         className="navigation"
-        restaurants={restaurants}
-        currentIndex={activeRestaurantIndex}
-        onTabClick={(index: number) => {
-          setStorageValue(ACTIVE_RESTAURANT_INDEX_STORAGE_KEY, String(index))
-          setActiveRestaurantIndex(index)
+        activeRestaurantId={activeRestaurantId}
+        onTabClick={(restaurantId) => {
+          setStorageValue(ACTIVE_RESTAURANT_ID_STORAGE_KEY, String(restaurantId))
+          setActiveRestaurantId(restaurantId)
         }}
       />
 
-      {activeRestaurant && <Restaurant restaurant={activeRestaurant} className="restaurant" /> }
+      {activeRestaurantId && <Restaurant restaurantId={activeRestaurantId} className="restaurant" /> }
     </div>
   )
 }

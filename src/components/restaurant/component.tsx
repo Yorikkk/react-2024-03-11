@@ -8,14 +8,17 @@ import classNames from "classnames";
 
 import styles from "./styles.module.scss";
 import { ThemeContext } from "../../context/theme";
+import { useSelector } from "react-redux";
+import { State } from "../../types/state";
 
 type Props = {
-  restaurant: IRestaurant,
+  restaurantId: string,
   className?: string,
 }
 
-export const Restaurant: FC<Props> = ({ restaurant, className }) => {
-  const { theme} = useContext(ThemeContext);
+export const Restaurant: FC<Props> = ({ restaurantId, className }) => {
+  const { theme } = useContext(ThemeContext);
+  const restaurant = useSelector<State, IRestaurant>((state) => state.restaurant.entities?.[restaurantId]);
 
   if (! restaurant) {
     return null;
@@ -28,12 +31,12 @@ export const Restaurant: FC<Props> = ({ restaurant, className }) => {
       <h2 className={styles.title}>{name}</h2>
 
       <h3 className={styles.subtitle}>Menu</h3>
-      <Dishes dishes={menu} />
+      <Dishes dishIds={menu} />
 
       {!! menu.length && (
         <div>
           <h3 className={styles.subtitle}>Reviews</h3>
-          <Reviews reviews={reviews} />
+          <Reviews reviewIds={reviews} />
         </div>
       )}
     </div>
