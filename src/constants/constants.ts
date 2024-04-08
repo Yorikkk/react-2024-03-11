@@ -1,6 +1,6 @@
 import { Themes } from "../types/types";
 
-export const ACTIVE_RESTAURANT_INDEX_STORAGE_KEY = 'currentRestaurantIndex'
+export const ACTIVE_RESTAURANT_ID_STORAGE_KEY = 'activeRestaurantId'
 export const ACTIVE_THEME_STORAGE_KEY = 'activeTheme'
 
 export const THEMES = {
