@@ -1,11 +1,8 @@
+import { EntityId } from "@reduxjs/toolkit";
+
 export type Review = {
-  id: string,
+  id: EntityId,
   text: string,
   rating: number,
   userId: string,
-}
-
-export type ReviewState = {
-  ids: string[],
-  entities: Record<string, Review>
 }

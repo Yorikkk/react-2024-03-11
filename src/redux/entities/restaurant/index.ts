@@ -1,19 +1,29 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { EntityId, EntityState, createEntityAdapter, createSlice } from "@reduxjs/toolkit";
 
-import { Restaurant } from "../../../types/restaurant";
-import { normalizedRestaurants } from "../../../constants/normalize-mock";
+import type { Restaurant } from "../../../types/restaurant";
 
-type RestaurantEntities = Record<string, Restaurant>
+import { getRestaurants } from "./thunks/get-restaurants";
+
+export type RestaurantState = EntityState<Restaurant, EntityId>
+
+const entityAdapter = createEntityAdapter();
 
 export const restaurantSlice = createSlice({
   name: 'restaurant',
-  reducers: {},
-  initialState: {
-    ids: normalizedRestaurants.map(({ id }) => id),
-    entities: normalizedRestaurants.reduce((acc: RestaurantEntities, restaurant) => {
-      acc[restaurant.id] = restaurant;
 
-      return acc
-    }, {}),
-  },
+  reducers: {},
+  
+  initialState: entityAdapter.getInitialState<RestaurantState>({
+    ids: [],
+    entities: {}
+  }),
+
+  extraReducers: (builder) => 
+    builder.addCase(
+      getRestaurants.fulfilled,
+
+      (state, { payload: restaurants }) => {
+        entityAdapter.setAll(state, restaurants)
+      }
+    )
 })

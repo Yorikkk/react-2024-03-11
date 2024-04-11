@@ -1,20 +1,22 @@
 import { FC } from "react";
-
-import { RestaurantTab } from "../restaurant-tab/component";
+import { useSelector } from "react-redux";
 import classNames from "classnames";
 
+import { selectRestaurantIds } from "../../redux/entities/restaurant/selectors";
+
+import { RestaurantTab } from "../restaurant-tab/component";
+
 import styles from "./styles.module.scss";
-import { useSelector } from "react-redux";
-import { State } from "../../types/state";
+import { EntityId } from "@reduxjs/toolkit";
 
 type Props = {
   className?: string,
-  activeRestaurantId: string | null,
-  onTabClick: (restaurantId: string) => void,
+  activeRestaurantId: EntityId | null,
+  onTabClick: (restaurantId: EntityId) => void,
 }
 
 export const RestaurantTabs: FC<Props> = ({ activeRestaurantId, onTabClick, className }) => {
-  const restaurantIds = useSelector<State, string[]>((state) => state.restaurant.ids);
+  const restaurantIds = useSelector(selectRestaurantIds);
 
   return (
     <div className={classNames(styles.root, className)}>
