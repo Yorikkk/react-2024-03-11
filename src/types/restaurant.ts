@@ -1,11 +1,8 @@
+import { EntityId } from "@reduxjs/toolkit"
+
 export type Restaurant = {
-  id: string,
+  id: EntityId,
   name: string,
   menu: string[],
   reviews: string[],
-}
-
-export type RestaurantState = {
-  ids: string[],
-  entities: Record<string, Restaurant>
 }
