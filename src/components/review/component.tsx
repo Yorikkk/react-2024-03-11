@@ -1,22 +1,20 @@
 import { type FC } from "react";
-import { useSelector } from "react-redux";
-import { State } from "../../types/state";
+
 import { Review as IReview} from "../../types/review";
-import { EntityId } from "@reduxjs/toolkit";
-import { selectReviewById } from "../../redux/entities/review/selectors";
+import { UserContainer } from "../user/container";
+
+import styles from "./styles.module.scss"
 
 type Props = {
-  reviewId: EntityId
+  review: IReview
 }
 
-export const Review: FC<Props> = ({ reviewId }) => {
-  const review = useSelector<State, IReview>((state) => selectReviewById(state, reviewId));
-
-  if (! review) {
-    return null;
-  }
-
+export const Review: FC<Props> = ({ review }) => {
   return (
-    <span>{review.text}</span>
+    <div className={styles.root}>
+      <UserContainer userId={review.userId} className={styles.user} />
+      
+      <div className={styles.text}>{review.text}</div>
+    </div>
   )
 }

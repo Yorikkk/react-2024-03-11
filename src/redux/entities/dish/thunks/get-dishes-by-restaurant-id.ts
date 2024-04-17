@@ -16,7 +16,6 @@ export const getDishesByRestaurantId = createAsyncThunk<Dish[], EntityId>(
 
   {
     condition: (restaurantId: EntityId, { getState }) => {
-      // TODO: Разобраться с конструкцией "getState() as State"
       const state = getState() as State;
 
       const restaurantDishIds = selectRestaurantDishIds(state, restaurantId);

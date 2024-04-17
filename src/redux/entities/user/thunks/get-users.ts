@@ -15,7 +15,6 @@ export const getUsers = createAsyncThunk(
   },
 
   {
-    // TODO: Разобраться с конструкцией (getState() as State)
     condition: (_, { getState }) => ! selectUserIds(getState() as State)?.length
   }
 );

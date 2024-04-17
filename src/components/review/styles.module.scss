@@ -1,0 +1,17 @@
+.root {
+  display: flex;
+  padding: 10px;
+  gap: 10px;
+}
+
+.user {
+  font-weight: 500;
+
+  &::after {
+    content: ":";
+  }
+}
+
+.text {
+  font-style: italic;
+}

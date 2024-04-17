@@ -19,7 +19,6 @@ export const getReviewsByRestaurantId = createAsyncThunk<Review[], EntityId>(
 
   {
     condition: (restaurantId: EntityId, { getState }) => {
-      // TODO: Разобраться с конструкцией "getState() as State"
       const state = getState() as State
 
       const restaurantReviewIds = selectRestaurantReviewIds(state, restaurantId);

@@ -1,11 +1,11 @@
 import { useMemo } from "react";
 
 import { Layout } from "./components/layout/component";
-import { ThemeContext } from "./context/theme";
+import { RestaurantsContainer } from "./components/restaurants/container";
 import { UserContext } from "./context/user";
-import { Restaurants } from "./components/restaurants/component";
-import { useTheme } from "./hooks/theme";
+import { ThemeContext } from "./context/theme";
 import { useUser } from "./hooks/user";
+import { useTheme } from "./hooks/theme";
 
 export const App = () => {
   const { user, login, logout } = useUser();
@@ -25,7 +25,7 @@ export const App = () => {
     <UserContext.Provider value={userContext}>
       <ThemeContext.Provider value={themeContext}>
         <Layout>
-          <Restaurants />
+          <RestaurantsContainer />
         </Layout>
       </ThemeContext.Provider>
     </UserContext.Provider>

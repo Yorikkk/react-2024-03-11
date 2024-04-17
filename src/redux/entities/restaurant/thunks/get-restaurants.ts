@@ -15,7 +15,6 @@ export const getRestaurants = createAsyncThunk<Restaurant[]>(
   },
 
   {
-    // TODO: Разобраться с конструкцией (getState() as State)
     condition: (_, { getState }) => ! selectRestaurantIds(getState() as State)?.length
   }
 );

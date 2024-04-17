@@ -1,10 +1,13 @@
 import { FC } from "react"
-import { Button } from "../button/component"
 import { useSelector } from "react-redux"
+import { EntityId } from "@reduxjs/toolkit"
+
+
 import { State } from "../../types/state"
 import { Restaurant } from "../../types/restaurant"
 import { selectRestaurantById } from "../../redux/entities/restaurant/selectors"
-import { EntityId } from "@reduxjs/toolkit"
+
+import { Tab } from "../tab/component"
 
 type Props = {
   isActive: boolean,
@@ -12,7 +15,7 @@ type Props = {
   onClick: () => void
 }
 
-export const RestaurantTab: FC<Props> = ({ restaurantId, isActive, onClick }) => {
+export const RestaurantTabContainer: FC<Props> = ({ restaurantId, ...props }) => {
   const restaurant = useSelector<State, Restaurant>((state) => selectRestaurantById(state, restaurantId));
 
   if (! restaurant) {
@@ -21,14 +24,5 @@ export const RestaurantTab: FC<Props> = ({ restaurantId, isActive, onClick }) =>
 
   const { name } = restaurant;
 
-  return (
-    <Button 
-      onClick={onClick} 
-      disabled={isActive} 
-      viewVariant="secondary" 
-      size="l"
-    >
-      {name}
-    </Button>
-  )
+  return <Tab {...props} text={name} />
 }

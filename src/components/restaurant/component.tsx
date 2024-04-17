@@ -1,31 +1,21 @@
-import { useContext, type FC } from "react";
-import { useSelector } from "react-redux";
+import { type FC } from "react";
 import classNames from "classnames";
 
-import { State } from "../../types/state";
-import { ThemeContext } from "../../context/theme";
 import { type Restaurant as IRestaurant } from "../../types/restaurant";
-import { selectRestaurantById } from "../../redux/entities/restaurant/selectors";
 
-import { Dishes } from "../dishes/component";
-import { Reviews } from "../reviews/component";
+import { Themes } from "../../types/types";
+import { DishesContainer } from "../dishes/container";
+import { ReviewsContainer } from "../reviews/container";
 
 import styles from "./styles.module.scss";
-import { EntityId } from "@reduxjs/toolkit";
 
 type Props = {
-  restaurantId: EntityId,
+  theme: Themes
+  restaurant: IRestaurant,
   className?: string,
 }
 
-export const Restaurant: FC<Props> = ({ restaurantId, className }) => {
-  const { theme } = useContext(ThemeContext);
-  const restaurant = useSelector<State, IRestaurant>((state) => selectRestaurantById(state, restaurantId));
-
-  if (! restaurant) {
-    return null;
-  }
-
+export const Restaurant: FC<Props> = ({ theme, restaurant, className }) => {
   const { name, menu } = restaurant;
 
   return (
@@ -33,12 +23,12 @@ export const Restaurant: FC<Props> = ({ restaurantId, className }) => {
       <h2 className={styles.title}>{name}</h2>
 
       <h3 className={styles.subtitle}>Menu</h3>
-      <Dishes restaurantId={restaurantId} />
+      <DishesContainer restaurantId={restaurant.id} />
 
       {!! menu.length && (
         <div>
           <h3 className={styles.subtitle}>Reviews</h3>
-          <Reviews restaurantId={restaurantId} />
+          <ReviewsContainer restaurantId={restaurant.id} />
         </div>
       )}
     </div>
